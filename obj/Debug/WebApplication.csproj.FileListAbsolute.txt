@@ -4,3 +4,9 @@ C:\Users\TEM SAKADA\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication.csp
 C:\Users\TEM SAKADA\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication.csproj.CoreCompileInputs.cache
 C:\Users\TEM SAKADA\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.dll
 C:\Users\TEM SAKADA\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.pdb
+C:\Users\K\Documents\My Web Sites\WebSite1\bin\WebApplication1.dll
+C:\Users\K\Documents\My Web Sites\WebSite1\bin\WebApplication1.pdb
+C:\Users\K\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache
+C:\Users\K\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication.csproj.CoreCompileInputs.cache
+C:\Users\K\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.dll
+C:\Users\K\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.pdb
