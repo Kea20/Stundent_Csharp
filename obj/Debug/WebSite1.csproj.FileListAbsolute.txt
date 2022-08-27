@@ -1,0 +1,6 @@
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\bin\WebApplication1.dll
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\bin\WebApplication1.pdb
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebSite1.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebSite1.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.dll
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.pdb

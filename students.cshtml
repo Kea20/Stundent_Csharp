@@ -1,0 +1,64 @@
+@using System.Data.SqlClient;
+@{
+    Page.Title = "Students";
+    Layout = "~/layout.cshtml";
+    var c = @"Data Source=DESKTOP-QBTI1IA\SQLEXPRESS;Database=Student_DB;Trusted_Connection=True;";
+    var conn = new SqlConnection(c);
+    conn.Open();
+    var query = "SELECT * FROM Students";
+    var cmd = new SqlCommand(query, conn);
+    var dr = cmd.ExecuteReader();
+}
+<!-- Table Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light text-center rounded h-100 p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h5 class="mb-0">Student Table</h5>
+                    <a href="~/add.cshtml?" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">StudendtID</th>
+                                <th scope="col">StudentName</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">DateOfBirth</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @while (dr.Read())
+                            {
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>@dr.GetString(0)</td>
+                                    <td>@dr.GetString(1)</td>
+                                    <td>@dr.GetString(2)</td>
+                                    <td>@dr.GetDateTime(3)</td>
+                                    <td>
+                                        <a href="~/edit.cshtml?" class="btn btn-sm btn-primary"><i
+                                            class="bi bi-pencil-square"></i></a>
+                                        <a href="~/delete.cshtml?" class="btn btn-sm btn-primary"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></a>
+                                        <a href="~/view.cshtml?" class="btn btn-sm btn-primary"><i class="fa fa-eye"
+                                            aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Table End -->
+
+@{
+    dr.Close();
+    conn.Close();
+}

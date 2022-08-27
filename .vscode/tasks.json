@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command":"C:\\PROGRA~1\\MSBuild\\15.0\\Bin\\MSBuild.exe",
+            "type":"shell",
+            "args":[
+                "WebApplication.csproj",
+                "/t:Build",
+                "/p:Configuration=Debug",
+                "/p:Platform=\"AnyCPU\""
+            ]
+        }
+    ]
+}

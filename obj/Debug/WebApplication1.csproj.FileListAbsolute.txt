@@ -1,0 +1,12 @@
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\WebApplication1\WebApplication1\bin\WebApplication1.dll.config
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\WebApplication1\WebApplication1\bin\WebApplication1.dll
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\WebApplication1\WebApplication1\bin\WebApplication1.pdb
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\bin\WebApplication1.dll
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\bin\WebApplication1.pdb
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.dll
+C:\Users\Lenovo\Documents\My Web Sites\WebSite1\obj\Debug\WebApplication1.pdb
