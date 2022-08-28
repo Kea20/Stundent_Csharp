@@ -1,15 +1,3 @@
-@if(IsPost){
-    try{
-    var email = Request.Form.Get("Email");
-    var password = Request.Form.Get("Password");
-    
-    if(email=="admin@gmail.com"&&password=="admin"){
-        
-    }else{Response.Redirect("~/default.cshtml");}
-    }catch(Exception ex){
-        Response.Write(ex.Message);
-    }
-}else{Response.Redirect("~/default.cshtml");}
 @{
     Page.Title = "Dashboard";
     Layout = "~/layout.cshtml";

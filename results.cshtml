@@ -1,9 +1,4 @@
 @using System.Data.SqlClient;
-<%If Session("email")="admin@gmail.com" Then%>
-  This is the text version of the page
-<%Else%>
-  This is the multimedia version of the page
-<%End If%>
 @{
     Page.Title = "Results";
     Layout = "~/layout.cshtml";
