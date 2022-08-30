@@ -1,7 +1,7 @@
 @using System.Data.SqlClient;
 @{
     Page.Title = "Results";
-    Layout = "~/layout.cshtml";
+    Layout = "~/_layout.cshtml";
     var c = @"Data Source=DESKTOP-QBTI1IA\SQLEXPRESS;Database=Student_DB;Trusted_Connection=True;";
     var conn = new SqlConnection(c);
     conn.Open();

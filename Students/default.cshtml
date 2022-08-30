@@ -1,7 +1,7 @@
 @using System.Data.SqlClient;
 @{
     Page.Title = "Students";
-    Layout = "~/layout.cshtml";
+    Layout = "~/_layout.cshtml";
     var c = @"Data Source=DESKTOP-QBTI1IA\SQLEXPRESS;Database=Student_DB;Trusted_Connection=True;";
     var conn = new SqlConnection(c);
     conn.Open();
@@ -16,7 +16,7 @@
             <div class="bg-light text-center rounded h-100 p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h5 class="mb-0">Student Table</h5>
-                    <a href="~/add.cshtml?" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
+                    <a href="~/createStu.cshtml" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover">

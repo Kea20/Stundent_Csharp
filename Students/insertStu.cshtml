@@ -1,0 +1,25 @@
+@using System.Data.SqlClient;
+@if(IsPost){
+    try{
+    var stuid = Request.Form.Get("StuID");
+    var stuname = Request.Form.Get("StuName");
+    var gender = Request.Form.Get("Gender");
+    var dob = Request.Form.Get("DOB");
+    
+    var c = @"Data Source=DESKTOP-QBTI1IA\SQLEXPRESS;Database=Student_DB;Trusted_Connection=True;";
+    var conn = new SqlConnection(c);
+    conn.Open();
+    var sql = "INSERT INTO Students VALUES(@StudendtID, @StudentName, @Gender, @DateOfBirth)";
+    var cmd = new SqlCommand(sql, conn);
+    cmd.Parameters.AddWithValue("@StudendtID", stuid);
+    cmd.Parameters.AddWithValue("@StudentName", stuname);
+    cmd.Parameters.AddWithValue("@Gender", gender);
+    cmd.Parameters.AddWithValue("@DateOfBirth", dob);
+    cmd.ExecuteNonQuery();
+
+        Response.Redirect("~/students.cshtml");
+    }catch(Exception ex){
+        Response.Write(ex.Message);
+    }
+
+}
