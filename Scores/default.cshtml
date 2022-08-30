@@ -1,13 +1,10 @@
-@using System.Data.SqlClient;
+@using WebMatrix.Data;
 @{
     Page.Title = "Scores";
     Layout = "~/_layout.cshtml";
-    var c = @"Data Source=DESKTOP-QBTI1IA\SQLEXPRESS;Database=Student_DB;Trusted_Connection=True;";
-    var conn = new SqlConnection(c);
-    conn.Open();
-    var query = "SELECT students.StudendtID,students.StudentName,students.Gender,2022-year(DateOfBirth),count(Results.subjectID)as countSubject ,sum(score)as total ,avg(score) as Average FROM Students INNER JOIN Results ON Results.StudendtID=students.StudendtID GROUP BY students.StudendtID,students.StudentName,students.Gender,2022-year(DateOfBirth) ORDER BY avg(score) DESC";
-    var cmd = new SqlCommand(query, conn);
-    var dr = cmd.ExecuteReader();
+
+    var db = Database.Open("Student_DB");
+    var scores = db.Query("SELECT students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) as Years,count(Results.subjectID)as CountSubject ,sum(score)as Total,avg(score) as Average FROM Students INNER JOIN Results ON Results.StudentID=students.StudentID GROUP BY students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) ORDER BY avg(score) DESC");
 }
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
@@ -23,25 +20,28 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">StudendtID</th>
+                                <th scope="col">StudentID</th>
                                 <th scope="col">StudentName</th>
                                 <th scope="col">Gender</th>
                                 <th scope="col">Years</th>
+                                <th scope="col">CountSubject</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Average</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @while (dr.Read())
+                            @foreach (var score in scores)
                             {
+                                
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>@dr.GetString(0)</td>
-                                    <td>@dr.GetString(1)</td>
-                                    <td>@dr.GetString(2)</td>
-                                    <td>@dr.GetInt32(3)</td>
-                                    <td>@dr.GetDouble(5)</td>
-                                    <td>@dr.GetDouble(6)</td>
+                                    <td>@score.StudentID</td>
+                                    <td>@score.StudentName</td>
+                                    <td>@score.Gender</td>
+                                    <td>@score.Years</td>
+                                    <td>@score.CountSubject</td>
+                                    <td>@score.Total</td>
+                                    <td>@score.Average</td>
                                 
                                 </tr>
                             }
@@ -53,8 +53,3 @@
     </div>
 </div>
 <!-- Table End -->
-
-@{
-    dr.Close();
-    conn.Close();
-}

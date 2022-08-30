@@ -1,13 +1,9 @@
-@using System.Data.SqlClient;
+
 @{
     Page.Title = "Results";
     Layout = "~/_layout.cshtml";
-    var c = @"Data Source=DESKTOP-QBTI1IA\SQLEXPRESS;Database=Student_DB;Trusted_Connection=True;";
-    var conn = new SqlConnection(c);
-    conn.Open();
-    var query = "SELECT * FROM Results";
-    var cmd = new SqlCommand(query, conn);
-    var dr = cmd.ExecuteReader();
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var results = db.Query("SELECT * FROM Results");
 }
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
@@ -30,13 +26,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @while (dr.Read())
+                            @foreach (var result in results)
                             {
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>@dr.GetString(0)</td>
-                                    <td>@dr.GetString(1)</td>
-                                    <td>@dr.GetDouble(2)</td>
+                                    <td>@result.StudentID</td>
+                                    <td>@result.SubjectID</td>
+                                    <td>@result.Score</td>
                                     <td>
                                         <a href="~/edit.cshtml?" class="btn btn-sm btn-primary"><i
                                             class="bi bi-pencil-square"></i></a>
@@ -55,8 +51,3 @@
     </div>
 </div>
 <!-- Table End -->
-
-@{
-    dr.Close();
-    conn.Close();
-}
