@@ -1,0 +1,30 @@
+@using WebMatrix.Data;
+@{
+    Layout = "~/_layout.cshtml";
+
+    var db = Database.Open("Demo");
+    var rows = db.Query("SELECT * FROM Major");
+}
+
+<div class="w3-col m6">
+    <h2>Major List</h2>
+    <ul class="w3-ul w3-border">
+        <li>
+            <form action="~/major/insert.cshtml" method="post">
+                <p>
+                    <input type="text" class="w3-input w3-border" name="Name" placeholder="Major Name" required>
+                </p>
+            </form>
+        </li>
+        @foreach(var row in rows) {
+            <li class="w3-padding-16">
+                <a href="~/major/edit.cshtml?id=@row.Id">@row.Name</a>
+                
+                <form action="~/major/delete.cshtml" class="w3-right" method="post" id="delete-form" onsubmit="return confirm('Are you sure?');">
+                    <input type="hidden" name="Id" value="@row.Id">
+                    <button type="submit" class="w3-btn w3-tiny">&times;</button>
+                </form>
+            </li>
+        }        
+    </ul>    
+</div>
