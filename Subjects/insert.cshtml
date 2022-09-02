@@ -1,0 +1,14 @@
+@using System.Data.SqlClient;
+@if(IsPost){
+    try{
+    var subid = Request.Form.Get("SubID");
+    var subname = Request.Form.Get("SubName");
+    
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var stus = db.Query("INSERT INTO Subjects VALUES(@0 , @1)",subid, subname);
+        Response.Redirect("~/Subjects/default.cshtml");
+    }catch(Exception ex){
+        Response.Write(ex.Message);
+    }
+
+}

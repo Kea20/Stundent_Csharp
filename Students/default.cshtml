@@ -13,7 +13,7 @@
             <div class="bg-light text-center rounded h-100 p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h5 class="mb-0">Student Table</h5>
-                    <a href="~/createStu.cshtml" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
+                    <a href="~/Students/createStu.cshtml" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -37,7 +37,7 @@
                                     <td>@stu.Gender</td>
                                     <td>@stu.DateOfBirth</td>
                                     <td>
-                                        <a href="~/edit.cshtml?" class="btn btn-sm btn-primary"><i
+                                        <a href="~/Students/edit.cshtml?id=@stu.StudentID" class="btn btn-sm btn-primary"><i
                                             class="bi bi-pencil-square"></i></a>
                                         <a href="~/delete.cshtml?" class="btn btn-sm btn-primary"><i class="fa fa-trash"
                                             aria-hidden="true"></i></a>

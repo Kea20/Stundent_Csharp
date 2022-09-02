@@ -1,0 +1,51 @@
+@{
+    Page.Title = "UpdateSubject";
+    Layout = "~/_layout.cshtml";
+
+    var subID = Request.QueryString.Get("id");
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var subs = db.QuerySingle("SELECT * FROM Subjects WHERE SubjectID=@0", subID);
+    if (subs == null)
+    {
+        Response.Redirect("~/Subjects/default.cshtml");
+        return;
+    }
+}
+
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Update Subject</h6>
+                <form action="~/Subjects/update.cshtml?" method="post">
+                    <input type="hidden" name="OldSubID" value="@subs.SubjectID">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">SubjectID</label>
+                        <input type="text" class="form-control" value="@subs.SubjectID" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" name="SubID">
+                        <div id="emailHelp" class="form-text">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">SubjectName</label>
+                        <input type="text" class="form-control" value="@subs.SubjectName" id="exampleInputPassword1"
+                            name="SubName">
+                    </div>
+                    <button type="submit" class="btn btn-primary" value="Update"> Update</button>
+                </form>
+                <form action="~/Subjects/delete.cshtml" method="post">
+                    <div class="d-flex align-items-center border-bottom py-2">
+                        <input type="hidden" name="SubID" value="@subs.SubjectID">
+                        <input class="form-check-input m-0" type="checkbox" required>
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <span>do you want to delete ? <button class="btn btn-sm"><i class="fa fa-times"
+                                            type="submit"></i></button></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

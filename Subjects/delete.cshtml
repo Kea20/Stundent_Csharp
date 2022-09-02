@@ -1,0 +1,13 @@
+@using System.Data.SqlClient;
+@if(IsPost){
+    try{
+        var subid = Request.Form.Get("SubID");
+        var db = WebMatrix.Data.Database.Open("Student_DB");
+        var stus = db.Query("DELETE FROM Subjects WHERE SubjectID=@0",subid);
+
+        Response.Redirect("~/Subjects/default.cshtml");
+    }catch(Exception ex){
+        Response.Write(ex.Message);
+    }
+
+} 

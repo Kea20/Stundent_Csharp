@@ -5,9 +5,10 @@
     var stuname = Request.Form.Get("StuName");
     var gender = Request.Form.Get("Gender");
     var dob = Request.Form.Get("DOB");
+    var OldStuID = Request.Form.Get("OldStuID");
     
     var db = WebMatrix.Data.Database.Open("Student_DB");
-    var stus = db.Query("INSERT INTO Students VALUES(@0 , @1, @2, @3)",stuid, stuname, gender, dob);
+    var stus = db.Query("UPDATE Students SET StudentID=@0, StudentName=@1, Gender=@2, DateOfBirth=@3 WHERE StudentID=@4",stuid, stuname, gender, dob, OldStuID);
         Response.Redirect("~/Students/default.cshtml");
     }catch(Exception ex){
         Response.Write(ex.Message);

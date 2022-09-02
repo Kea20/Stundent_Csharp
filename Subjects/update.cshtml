@@ -1,0 +1,15 @@
+@using System.Data.SqlClient;
+@if(IsPost){
+    try{
+    var subid = Request.Form.Get("SubID");
+    var subname = Request.Form.Get("SubName");
+    var OldSubID = Request.Form.Get("OldSubID");
+    
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var subs = db.Query("UPDATE Subjects SET SubjectID=@0, SubjectName=@1 WHERE SubjectID=@2",subid, subname, OldSubID);
+        Response.Redirect("~/Subjects/default.cshtml");
+    }catch(Exception ex){
+        Response.Write(ex.Message);
+    }
+
+}
