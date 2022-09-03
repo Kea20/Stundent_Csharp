@@ -5,6 +5,7 @@
 
     var db = Database.Open("Student_DB");
     var subs = db.Query("SELECT * FROM Subjects");
+    var Count=0;
 }
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
@@ -28,8 +29,9 @@
                         <tbody>
                             @foreach (var sub in subs)
                             {
+                                Count++;
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">@Count</th>
                                     <td>@sub.SubjectID</td>
                                     <td>@sub.SubjectName</td>
                                     <td>

@@ -2,7 +2,7 @@
 @{
     Page.Title = "Scores";
     Layout = "~/_layout.cshtml";
-
+    var Count = 0;
     var db = Database.Open("Student_DB");
     var scores = db.Query("SELECT students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) as Years,count(Results.subjectID)as CountSubject ,sum(score)as Total,avg(score) as Average FROM Students INNER JOIN Results ON Results.StudentID=students.StudentID GROUP BY students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) ORDER BY avg(score) DESC");
 }
@@ -32,9 +32,9 @@
                         <tbody>
                             @foreach (var score in scores)
                             {
-                                
+                                Count++;
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">@Count</th>
                                     <td>@score.StudentID</td>
                                     <td>@score.StudentName</td>
                                     <td>@score.Gender</td>

@@ -2,9 +2,8 @@
     Page.Title = "Students";
     Layout = "~/_layout.cshtml";
     var db = WebMatrix.Data.Database.Open("Student_DB");
-    var stus = db.Query("SELECT * FROM Students");
-
-    
+    var stus = db.Query("SELECT * FROM Students");  
+    var Count = 0;
 }
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
@@ -30,8 +29,9 @@
                         <tbody>
                             @foreach (var stu in stus)
                             {
+                                Count++;
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">@Count</th>
                                     <td>@stu.StudentID</td>
                                     <td>@stu.StudentName</td>
                                     <td>@stu.Gender</td>

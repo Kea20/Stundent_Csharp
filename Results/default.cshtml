@@ -4,6 +4,7 @@
     Layout = "~/_layout.cshtml";
     var db = WebMatrix.Data.Database.Open("Student_DB");
     var results = db.Query("SELECT * FROM Results");
+    var Count = 0;
 }
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
@@ -12,7 +13,7 @@
             <div class="bg-light text-center rounded h-100 p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h5 class="mb-0">Results Table</h5>
-                    <a href="~/add.cshtml?" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
+                    <a href="~/Results/create.cshtml?" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -28,8 +29,9 @@
                         <tbody>
                             @foreach (var result in results)
                             {
+                                Count++;
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">@Count</th>
                                     <td>@result.StudentID</td>
                                     <td>@result.SubjectID</td>
                                     <td>@result.Score</td>
@@ -37,8 +39,6 @@
                                         <a href="~/edit.cshtml?" class="btn btn-sm btn-primary"><i
                                             class="bi bi-pencil-square"></i></a>
                                         <a href="~/delete.cshtml?" class="btn btn-sm btn-primary"><i class="fa fa-trash"
-                                            aria-hidden="true"></i></a>
-                                        <a href="~/view.cshtml?" class="btn btn-sm btn-primary"><i class="fa fa-eye"
                                             aria-hidden="true"></i></a>
                                     </td>
                                 </tr>

@@ -1,0 +1,46 @@
+@{
+    Page.Title = "Add Point";
+    Layout = "~/_layout.cshtml";
+
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var stus = db.Query("SELECT * FROM Students");
+    var subs = db.Query("SELECT * FROM Subjects");
+}
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Add Score</h6>
+        <form action="~/Subjects/insert.cshtml?" method="post">
+            <div class="row g-4">
+                <div class="col-sm-12 col-xl-6">
+                    <label for="exampleInputEmail1" class="form-label">Student</label>
+                    <select class="form-select mb-3" aria-label="Default select example">
+                        <option selected>Choose Student</option>
+                        @foreach (var stu in stus)
+                        {
+                            <option value="@stu.StudentID">@stu.StudentName</option>
+                        }
+                    </select>
+                    <label for="exampleInputEmail1" class="form-label">Subject</label>
+                    <select class="form-select mb-3" aria-label="Default select example">
+                        <option selected>Choose Subject</option>
+                        @foreach (var sub in subs)
+                        {
+                            <option value="@sub.SubjectID">@sub.SubjectName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Score</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="Score">
+                        <div id="emailHelp" class="form-text">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" value="Create"> Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
