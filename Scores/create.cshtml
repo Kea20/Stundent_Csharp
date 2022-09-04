@@ -10,11 +10,11 @@
 <div class="container-fluid pt-4 px-4">
     <div class="bg-light rounded h-100 p-4">
         <h6 class="mb-4">Add Score</h6>
-        <form action="~/Subjects/insert.cshtml?" method="post">
+        <form action="~/Scores/insert.cshtml?" method="post">
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-6">
                     <label for="exampleInputEmail1" class="form-label">Student</label>
-                    <select class="form-select mb-3" aria-label="Default select example">
+                    <select class="form-select mb-3" aria-label="Default select example" name="StuID">
                         <option selected>Choose Student</option>
                         @foreach (var stu in stus)
                         {
@@ -22,7 +22,7 @@
                         }
                     </select>
                     <label for="exampleInputEmail1" class="form-label">Subject</label>
-                    <select class="form-select mb-3" aria-label="Default select example">
+                    <select class="form-select mb-3" aria-label="Default select example" name="SubID">
                         <option selected>Choose Subject</option>
                         @foreach (var sub in subs)
                         {
@@ -38,9 +38,22 @@
                         <div id="emailHelp" class="form-text">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" value="Create"> Create</button>
+                    <button type="submit" class="btn btn-primary" value="Create" onclick="myFunction()"> Create</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<script>  
+function myFunction() {  
+    var result;  
+    var r = confirm("Select an Action!");  
+    if (r == true) {  
+        result = "You have selected OK!";  
+    } else {  
+        result = "You have selected Cancelled!";  
+    }  
+    document.getElementById("conf").innerHTML = result;  
+}  
+</script>  

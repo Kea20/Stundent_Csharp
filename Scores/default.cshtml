@@ -1,10 +1,10 @@
-@using WebMatrix.Data;
+
 @{
     Page.Title = "Scores";
     Layout = "~/_layout.cshtml";
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var results = db.Query("SELECT * FROM Results");
     var Count = 0;
-    var db = Database.Open("Student_DB");
-    var scores = db.Query("SELECT students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) as Years,count(Results.subjectID)as CountSubject ,sum(score)as Total,avg(score) as Average FROM Students INNER JOIN Results ON Results.StudentID=students.StudentID GROUP BY students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) ORDER BY avg(score) DESC");
 }
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
@@ -12,8 +12,8 @@
         <div class="col-12">
             <div class="bg-light text-center rounded h-100 p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h5 class="mb-0">Student Score</h5>
-                    
+                    <h5 class="mb-0">Scores</h5>
+                    <a href="~/Scores/create.cshtml?" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -21,28 +21,26 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">StudentID</th>
-                                <th scope="col">StudentName</th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Years</th>
-                                <th scope="col">CountSubject</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Average</th>
+                                <th scope="col">SubjectID</th>
+                                <th scope="col">Score</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var score in scores)
+                            @foreach (var result in results)
                             {
                                 Count++;
                                 <tr>
                                     <th scope="row">@Count</th>
-                                    <td>@score.StudentID</td>
-                                    <td>@score.StudentName</td>
-                                    <td>@score.Gender</td>
-                                    <td>@score.Years</td>
-                                    <td>@score.CountSubject</td>
-                                    <td>@score.Total</td>
-                                    <td>@score.Average</td>
-                                
+                                    <td>@result.StudentID</td>
+                                    <td>@result.SubjectID</td>
+                                    <td>@result.Score</td>
+                                    <td>
+                                        <a href="~/Scores/edit.cshtml?id=@result.Id" class="btn btn-sm btn-primary"><i
+                                            class="bi bi-pencil-square"></i></a>
+                                        <a href="~/Scores/delete.cshtml?id=@result.Id" onclick="myFunction()" class="btn btn-sm btn-primary"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -53,3 +51,15 @@
     </div>
 </div>
 <!-- Table End -->
+<script>  
+function myFunction() {  
+    var result;  
+    var r = confirm("Select an Action!");  
+    if (r == true) {  
+        result = "You have selected OK!";  
+    } else {  
+        result = "You have selected Cancelled!";  
+    }  
+    document.getElementById("conf").innerHTML = result;  
+}  
+</script>  

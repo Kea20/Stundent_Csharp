@@ -1,0 +1,15 @@
+@using System.Data.SqlClient;
+@if(IsPost){
+    try{
+    var StuID = Request.Form.Get("StuID");
+    var Score = Request.Form.Get("Score");
+    var SubID = Request.Form.Get("SubID");
+    
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var score = db.Query("INSERT INTO Results VALUES(@0, @1, @2)", StuID, SubID, Score);
+        Response.Redirect("~/Scores/create.cshtml");
+    }catch(Exception ex){
+        Response.Write(ex.Message);
+    }
+
+}

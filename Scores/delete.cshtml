@@ -1,0 +1,15 @@
+@using System.Data.SqlClient;
+@{
+    try{
+        var SID = Request.QueryString["id"];
+        int num =Int32.Parse(SID);
+        var db = WebMatrix.Data.Database.Open("Student_DB");
+        var stus = db.Query("DELETE FROM Results WHERE Id=@0",num);
+
+        Response.Redirect("~/Scores/default.cshtml");
+    }catch(Exception ex){
+        Response.Write(ex.Message);
+    }
+
+}
+

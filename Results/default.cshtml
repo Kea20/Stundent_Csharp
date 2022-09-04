@@ -1,10 +1,10 @@
-
+@using WebMatrix.Data;
 @{
     Page.Title = "Results";
     Layout = "~/_layout.cshtml";
-    var db = WebMatrix.Data.Database.Open("Student_DB");
-    var results = db.Query("SELECT * FROM Results");
     var Count = 0;
+    var db = Database.Open("Student_DB");
+    var scores = db.Query("SELECT students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) as Years,count(Results.subjectID)as CountSubject ,sum(score)as Total,dbo.GetResults(sum(score)) as Result FROM Students INNER JOIN Results ON Results.StudentID=students.StudentID GROUP BY students.StudentID,students.StudentName,students.Gender,2022-year(DateOfBirth) ORDER BY Total DESC");
 }
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
@@ -12,35 +12,37 @@
         <div class="col-12">
             <div class="bg-light text-center rounded h-100 p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h5 class="mb-0">Results Table</h5>
-                    <a href="~/Results/create.cshtml?" class="btn btn-primary ms-2">Add   <i class="bi bi-person-plus"></i></a>
+                    <h5 class="mb-0">Results</h5>
+                    
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">StudendtID</th>
-                                <th scope="col">SubjectID</th>
-                                <th scope="col">Score</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">StudentID</th>
+                                <th scope="col">StudentName</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Years</th>
+                                <th scope="col">CountSubject</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Results</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var result in results)
+                            @foreach (var score in scores)
                             {
                                 Count++;
                                 <tr>
                                     <th scope="row">@Count</th>
-                                    <td>@result.StudentID</td>
-                                    <td>@result.SubjectID</td>
-                                    <td>@result.Score</td>
-                                    <td>
-                                        <a href="~/edit.cshtml?" class="btn btn-sm btn-primary"><i
-                                            class="bi bi-pencil-square"></i></a>
-                                        <a href="~/delete.cshtml?" class="btn btn-sm btn-primary"><i class="fa fa-trash"
-                                            aria-hidden="true"></i></a>
-                                    </td>
+                                    <td>@score.StudentID</td>
+                                    <td>@score.StudentName</td>
+                                    <td>@score.Gender</td>
+                                    <td>@score.Years</td>
+                                    <td>@score.CountSubject</td>
+                                    <td>@score.Total</td>
+                                    <td>@score.Result</td>
+                                
                                 </tr>
                             }
                         </tbody>

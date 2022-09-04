@@ -1,0 +1,76 @@
+@{
+    Page.Title = "UpdateScore";
+    Layout = "~/_layout.cshtml";
+
+    var sID = Request.QueryString.Get("id");
+    var db = WebMatrix.Data.Database.Open("Student_DB");
+    var subs = db.Query("SELECT * FROM Subjects");  
+    var stus = db.Query("SELECT * FROM Students");  
+    var alls = db.Query("SELECT Students.StudentID, Students.StudentName, Subjects.SubjectID, Subjects.SubjectName, Results.Score FROM Students inner JOIN Results on Students.StudentID=Results.StudentID INNER JOIN Subjects on Subjects.SubjectID=Results.SubjectID WHERE Results.Id=@0",sID);
+
+    if(alls == null) {
+        Response.Redirect("~/Student/default.cshtml");
+        return;
+    }  
+}
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Update Score</h6>
+        <form action="~/Scores/Update.cshtml?" method="post">
+        <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="ID" value="@sID">
+            <div class="row g-4">
+                <div class="col-sm-12 col-xl-6">
+                    <label for="exampleInputEmail1" class="form-label">Student</label>
+                    <select class="form-select mb-3" aria-label="Default select example" name="StuID">
+                        @foreach (var all in alls)
+                        {
+                            <option selected value="@all.StudentID">@all.StudentName</option>
+                        }
+                        @foreach (var stu in stus)
+                        {
+                            <option value="@stu.StudentID">@stu.StudentName</option>
+                        }
+                    </select>
+                    <label for="exampleInputEmail1" class="form-label">Subject</label>
+                    <select class="form-select mb-3" aria-label="Default select example" name="SubID">
+                        @foreach (var all in alls)
+                        {
+                            <option selected value="@all.SubjectID">@all.SubjectName</option>
+                        }
+                        @foreach (var sub in subs)
+                        {
+                            <option value="@sub.SubjectID">@sub.SubjectName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Score</label>
+                        @foreach (var all in alls)
+                        {
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="Score" value="@all.Score">
+                        }
+                        <div id="emailHelp" class="form-text" >
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" value="Create" onclick="myFunction()"> Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>  
+function myFunction() {  
+    var result;  
+    var r = confirm("Select an Action!");  
+    if (r == true) {  
+        result = "You have selected OK!";  
+    } else {  
+        result = "You have selected Cancelled!";  
+    }  
+    document.getElementById("conf").innerHTML = result;  
+}  
+</script>  

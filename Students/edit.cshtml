@@ -19,34 +19,58 @@
                 <h6 class="mb-4">Create Student</h6>
                 <form action="~/Students/update.cshtml?" method="post">
                 <input type="hidden" class="form-control" id="inputEmail3" name="OldStuID" value="@stus.StudentID">
-                    <div class="row mb-3">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">StudendtID</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3" name="StuID" value="@stus.StudentID">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">StuID</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="StuID" value="@stus.StudentID">
+                        <div id="emailHelp" class="form-text">
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">StuName</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword3" name="StuName" value="@stus.StudentName">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">StuName</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="StuName" value="@stus.StudentName">
+                        <div id="emailHelp" class="form-text">
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Gender</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword3" name="gender" value="@stus.Gender">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Gender</label>
+                        <select class="form-select mb-3" aria-label="Default select example" name="gender">
+                            <option value="@stus.Gender" selected>@stus.Gender</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">DOB</label>
+                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="DOB" value="@stus.DateOfBirth">
+                        <div id="emailHelp" class="form-text">
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">DOB</label>
-                        <div class="col-sm-10">
-                            <input type="date" class="form-control" id="inputPassword3" name="DOB" value="@stus.DateOfBirth">
-                        </div>
-                    </div>
-
                     <button type="submit" class="btn btn-primary" value="Create"> Update</button>
                 </form>
             </div>
         </div>
+
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Delete Student</h6>
+                <form action="~/Students/delete.cshtml" method="post">
+                    <div class="d-flex align-items-center border-bottom py-2">
+                        <input type="hidden" name="StuID" value="@stus.StudentID">
+                        <input class="form-check-input m-0" type="checkbox" required>
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <span>do you want to delete ? <button class="btn btn-sm"><i class="fa fa-times"
+                                            type="submit"></i></button></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+    
 </div>
+

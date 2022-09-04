@@ -1,0 +1,14 @@
+@using System.Data.SqlClient;
+@if(IsPost){
+    try{
+        var StuID = Request.Form.Get("StuID");
+        var db = WebMatrix.Data.Database.Open("Student_DB");
+        var stus = db.Query("DELETE FROM Results WHERE StudentID=@0",StuID);
+        var subs = db.Query("DELETE FROM Students WHERE StudentID=@0",StuID);
+
+        Response.Redirect("~/Students/default.cshtml");
+    }catch(Exception ex){
+        Response.Write(ex.Message);
+    }
+
+} 
